@@ -15,8 +15,8 @@ dependencies = [
    "Pillow",
    "shapely>=2.1.2",
    "scipy>=1.14.0",
-   "relational_structs@git+https://github.com/Princeton-Robot-Planning-and-Learning/prpl-mono.git#subdirectory=relational-structs",
-   "prpl_utils@git+https://github.com/Princeton-Robot-Planning-and-Learning/prpl-mono.git#subdirectory=prpl-utils",
+   "relational_structs@git+https://github.com/Princeton-Robot-Planning-and-Learning/prpl-mono.git@4be2cbf4ec361ea4e5c35d2338b5f06e69c70e46#subdirectory=relational-structs",
+   "prpl_utils@git+https://github.com/Princeton-Robot-Planning-and-Learning/prpl-mono.git@4be2cbf4ec361ea4e5c35d2338b5f06e69c70e46#subdirectory=prpl-utils",
 ]
 
 [project.optional-dependencies]
@@ -26,16 +26,16 @@ all = [
    "mujoco==3.2.4",
    "opencv-python>=4.9.0",
    "pybullet>=3.2.5",
-   "tomsgeoms2d@git+https://github.com/Princeton-Robot-Planning-and-Learning/prpl-mono.git#subdirectory=toms-geoms-2d",
-   "pybullet_helpers@git+https://github.com/Princeton-Robot-Planning-and-Learning/prpl-mono.git#subdirectory=pybullet-helpers",
+   "tomsgeoms2d@git+https://github.com/Princeton-Robot-Planning-and-Learning/prpl-mono.git@4be2cbf4ec361ea4e5c35d2338b5f06e69c70e46#subdirectory=toms-geoms-2d",
+   "pybullet_helpers@git+https://github.com/Princeton-Robot-Planning-and-Learning/prpl-mono.git@4be2cbf4ec361ea4e5c35d2338b5f06e69c70e46#subdirectory=pybullet-helpers",
 ]
 dynamic2d = [
    "pygame>=2.5.2",
    "pymunk==7.1.0",
-   "tomsgeoms2d@git+https://github.com/Princeton-Robot-Planning-and-Learning/prpl-mono.git#subdirectory=toms-geoms-2d",
+   "tomsgeoms2d@git+https://github.com/Princeton-Robot-Planning-and-Learning/prpl-mono.git@4be2cbf4ec361ea4e5c35d2338b5f06e69c70e46#subdirectory=toms-geoms-2d",
 ]
 kinematic2d = [
-   "tomsgeoms2d@git+https://github.com/Princeton-Robot-Planning-and-Learning/prpl-mono.git#subdirectory=toms-geoms-2d",
+   "tomsgeoms2d@git+https://github.com/Princeton-Robot-Planning-and-Learning/prpl-mono.git@4be2cbf4ec361ea4e5c35d2338b5f06e69c70e46#subdirectory=toms-geoms-2d",
 ]
 tidybot = [
    "mujoco==3.2.4",
@@ -44,7 +44,7 @@ tidybot = [
 ]
 kinematic3d = [
    "pybullet>=3.2.5",
-   "pybullet_helpers@git+https://github.com/Princeton-Robot-Planning-and-Learning/prpl-mono.git#subdirectory=pybullet-helpers",
+   "pybullet_helpers@git+https://github.com/Princeton-Robot-Planning-and-Learning/prpl-mono.git@4be2cbf4ec361ea4e5c35d2338b5f06e69c70e46#subdirectory=pybullet-helpers",
 ]
 develop = [
    "pygame>=2.5.2",
@@ -52,8 +52,8 @@ develop = [
    "mujoco==3.2.4",
    "opencv-python>=4.9.0",
    "pybullet>=3.2.5",
-   "tomsgeoms2d@git+https://github.com/Princeton-Robot-Planning-and-Learning/prpl-mono.git#subdirectory=toms-geoms-2d",
-   "pybullet_helpers@git+https://github.com/Princeton-Robot-Planning-and-Learning/prpl-mono.git#subdirectory=pybullet-helpers",
+   "tomsgeoms2d@git+https://github.com/Princeton-Robot-Planning-and-Learning/prpl-mono.git@4be2cbf4ec361ea4e5c35d2338b5f06e69c70e46#subdirectory=toms-geoms-2d",
+   "pybullet_helpers@git+https://github.com/Princeton-Robot-Planning-and-Learning/prpl-mono.git@4be2cbf4ec361ea4e5c35d2338b5f06e69c70e46#subdirectory=pybullet-helpers",
    "black[jupyter]",
    "docformatter",
    "isort",

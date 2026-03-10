@@ -15,4 +15,4 @@ runs:
       run: uv venv --python=${{ inputs.python-version }}
     - name: Install the project
       shell: bash
-      run: uv pip install -e ".[develop]"
+      run: UV_LOCK_TIMEOUT=900 uv pip install -e ".[develop]"
