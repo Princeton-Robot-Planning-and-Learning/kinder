@@ -3,11 +3,7 @@
 ## Usage
 ```python
 import kinder
-<<<<<<<< HEAD:kinder/docs/envs/variants/TidyBot3D/TidyBot3D-tool_use-lab2_kitchen-o50-sweep_the_blocks_to_the_right_side_of_the_kitchen_counter.md
-env = kinder.make("kinder/TidyBot3D-tool_use-lab2_kitchen-o50-sweep_the_blocks_to_the_right_side_of_the_kitchen_counter-v0")
-========
 env = kinder.make("kinder/SweepSimple3D-o50-sweep_the_blocks_to_the_right_side_of_the_kitchen_island-v0")
->>>>>>>> main:kinder/docs/envs/variants/SweepSimple3D/SweepSimple3D-o50-sweep_the_blocks_to_the_right_side_of_the_kitchen_island.md
 ```
 
 ## Description

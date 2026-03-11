@@ -3,11 +3,7 @@
 ## Usage
 ```python
 import kinder
-<<<<<<<< HEAD:kinder/docs/envs/variants/TidyBot3D/TidyBot3D-balance-o4.md
-env = kinder.make("kinder/TidyBot3D-balance-o4-v0")
-========
 env = kinder.make("kinder/BalanceBeam3D-o3-v0")
->>>>>>>> main:kinder/docs/envs/variants/BalanceBeam3D/BalanceBeam3D-o3.md
 ```
 
 ## Description

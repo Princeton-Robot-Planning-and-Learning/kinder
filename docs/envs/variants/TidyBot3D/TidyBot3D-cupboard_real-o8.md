@@ -3,11 +3,7 @@
 ## Usage
 ```python
 import kinder
-<<<<<<<< HEAD:kinder/docs/envs/variants/TidyBot3D/TidyBot3D-cupboard_real-o8.md
-env = kinder.make("kinder/TidyBot3D-cupboard_real-o8-v0")
-========
 env = kinder.make("kinder/TidyBot3D-Shelf3D-cupboard_real-o8-v0")
->>>>>>>> main:kinder/docs/envs/variants/Shelf3D/TidyBot3D-Shelf3D-cupboard_real-o8.md
 ```
 
 ## Description

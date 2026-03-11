@@ -3,11 +3,7 @@
 ## Usage
 ```python
 import kinder
-<<<<<<<< HEAD:kinder/docs/envs/variants/TidyBot3D/TidyBot3D-rearrange-lab2_kitchen-o1-put_the_boxed_drink_behind_the_bowl.md
-env = kinder.make("kinder/TidyBot3D-rearrange-lab2_kitchen-o1-put_the_boxed_drink_behind_the_bowl-v0")
-========
 env = kinder.make("kinder/TidyBot3D-Rearrange3D-lab2_kitchen-o1-put_the_boxed_drink_behind_the_bowl-v0")
->>>>>>>> main:kinder/docs/envs/variants/Rearrange3D/TidyBot3D-Rearrange3D-lab2_kitchen-o1-put_the_boxed_drink_behind_the_bowl.md
 ```
 
 ## Description
