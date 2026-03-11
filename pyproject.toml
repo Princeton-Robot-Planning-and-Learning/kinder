@@ -43,7 +43,7 @@ dynamic2d = [
 kinematic2d = [
    "tomsgeoms2d>=0.0.1",
 ]
-tidybot = [
+dynamic3d = [
    "mujoco==3.2.4",
    "opencv-python>=4.9.0",
    "gdown",

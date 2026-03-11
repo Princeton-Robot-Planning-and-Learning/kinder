@@ -133,7 +133,7 @@ pip install kindergarden[all]     # all environment dependencies
 pip install kindergarden[dynamic2d]     # only dynamic2d environments
 pip install kindergarden[kinematic2d]   # only kinematic2d environments
 pip install kindergarden[kinematic3d]   # only kinematic3d environments
-pip install kindergarden[tidybot]       # only tidybot environments
+pip install kindergarden[dynamic3d]     # only dynamic3d environments
 ```
 
 You can also combine extras: `pip install kindergarden[kinematic2d,kinematic3d]`

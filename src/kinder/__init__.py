@@ -21,8 +21,32 @@ from gymnasium.envs.registration import (  # pylint: disable=wrong-import-positi
 ENV_CLASSES: dict[str, dict[str, Any]] = {}
 
 
+def _check_deps(*modules: str) -> bool:
+    """Return True if all named modules are importable."""
+    for mod in modules:
+        try:
+            __import__(mod)
+        except ImportError:
+            return False
+    return True
+
+
+# Map from category name to the modules required for that category.
+_CATEGORY_DEPS: dict[str, tuple[str, ...]] = {
+    "Kinematic2D": ("tomsgeoms2d",),
+    "Dynamic2D": ("pymunk", "tomsgeoms2d"),
+    "Kinematic3D": ("pybullet", "pybullet_helpers"),
+    "Dynamic3D": ("mujoco",),
+}
+
+
 def register_all_environments() -> None:
-    """Add all benchmark environments to the gymnasium registry."""
+    """Add all benchmark environments to the gymnasium registry.
+
+    Categories whose optional dependencies are not installed are silently
+    skipped.  Install the corresponding extras to enable them, e.g.
+    ``pip install kindergarden[dynamic2d]``.
+    """
     # NOTE: ids must start with "kinder/" to be properly registered.
 
     # Detect headless mode (no DISPLAY) and set OSMesa if needed
@@ -34,7 +58,20 @@ def register_all_environments() -> None:
             os.environ["MUJOCO_GL"] = "osmesa"
             os.environ["PYOPENGL_PLATFORM"] = "osmesa"
 
-    # ******* Kinematic2D Environments *******
+    if _check_deps(*_CATEGORY_DEPS["Kinematic2D"]):
+        _register_kinematic2d()
+
+    if _check_deps(*_CATEGORY_DEPS["Dynamic2D"]):
+        _register_dynamic2d()
+
+    if _check_deps(*_CATEGORY_DEPS["Kinematic3D"]):
+        _register_kinematic3d()
+
+    if _check_deps(*_CATEGORY_DEPS["Dynamic3D"]):
+        _register_dynamic3d()
+
+
+def _register_kinematic2d() -> None:
     # Obstructions2D environment with different numbers of obstructions.
     num_obstructions = [0, 1, 2, 3, 4]
     variant_ids = []
@@ -138,8 +175,8 @@ def register_all_environments() -> None:
         variant_ids=[variant_id],
     )
 
-    # ******* Dynamic2D Environments *******
 
+def _register_dynamic2d() -> None:
     # DynObstruction2D environment with different numbers of obstructions.
     num_obstructions = [0, 1, 2, 3]
     variant_ids = []
@@ -210,8 +247,8 @@ def register_all_environments() -> None:
         variant_ids=variant_ids,
     )
 
-    # ******* Kinematic3D Environments *******
 
+def _register_kinematic3d() -> None:
     # Motion3D environment.
     variant_id = "kinder/Motion3D-v0"
     _register(
@@ -347,8 +384,8 @@ def register_all_environments() -> None:
         variant_ids=variant_ids,
     )
 
-    # ******* Dynamic3D Environments *******
 
+def _register_dynamic3d() -> None:
     # Tasks with different scenes and object counts
     tasks_root = Path(__file__).parent / "envs" / "dynamic3d" / "tasks"
 
