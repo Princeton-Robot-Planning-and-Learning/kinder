@@ -143,8 +143,8 @@ You can also combine extras: `pip install kindergarden[kinematic2d,kinematic3d]`
 We strongly recommend [uv](https://docs.astral.sh/uv/getting-started/installation/).
 
 ```bash
-git clone https://github.com/Princeton-Robot-Planning-and-Learning/kinder.git
-cd kinder
+git clone https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden.git
+cd kindergarden
 uv pip install -e ".[develop]"   # all dependencies + dev tools
 ```
 
