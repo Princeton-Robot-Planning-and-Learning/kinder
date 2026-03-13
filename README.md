@@ -1,42 +1,50 @@
 # KinDER
 
-A **p**hysical **r**easoning **bench**mark for robotics.
+A physical reasoning benchmark for robot learning and planning.
 
-There's growing excitement around large language models and their ability to "reason"—but reasoning isn't just about tokens and text. **Robots must reason too**: over long horizons, under uncertainty, and with sparse feedback. And unlike purely symbolic systems, **robotic reasoning is physical**: it's grounded in low-level, continuous state and action spaces. It requires understanding kinematics, geometry, dynamics, contact, force, tool use, and more.
+## Website
 
-This benchmark is designed for this kind of physical reasoning with robots. We invite researchers to try their best task and motion planning, reinforcement learning, imitation learning, and foundation models approaches. We hope that KinDER will bridge perspectives and foster shared progress toward physically intelligent robots.
+See [https://prpl.group/kinder-site/](https://prpl.group/kinder-site/) for documentation and tutorials.
 
-### Environments
+### Requirements
+1. Python >=3.10, <3.13
+2. Tested on MacOS Monterey and Ubuntu 22.04 (but we aim to support most platforms)
 
-| Environment | Category | Example Environment ID |
-|---|---|---|
-| ClutteredRetrieval2D | Kinematic2D | `kinder/ClutteredRetrieval2D-o10-v0` |
-| Motion2D | Kinematic2D | `kinder/Motion2D-p5-v0` |
-| Obstruction2D | Kinematic2D | `kinder/Obstruction2D-o4-v0` |
-| PushPullHook2D | Kinematic2D | `kinder/PushPullHook2D-v0` |
-| ClutteredStorage2D | Kinematic2D | `kinder/ClutteredStorage2D-b15-v0` |
-| StickButton2D | Kinematic2D | `kinder/StickButton2D-b10-v0` |
-| DynObstruction2D | Dynamic2D | `kinder/DynObstruction2D-o3-v0` |
-| DynPushPullHook2D | Dynamic2D | `kinder/DynPushPullHook2D-o5-v0` |
-| DynPushT2D | Dynamic2D | `kinder/DynPushT2D-t1-v0` |
-| DynScoopPour2D | Dynamic2D | `kinder/DynScoopPour2D-o50-v0` |
-| Obstruction3D | Kinematic3D | `kinder/Obstruction3D-o4-v0` |
-| Packing3D | Kinematic3D | `kinder/Packing3D-p3-v0` |
-| Table3D | Kinematic3D | `kinder/Table3D-o3-v0` |
-| Transport3D | Kinematic3D | `kinder/Transport3D-o2-v0` |
-| BaseMotion3D | Kinematic3D | `kinder/BaseMotion3D-v0` |
-| Shelf3D | Kinematic3D | `kinder/Shelf3D-o10-v0` |
-| ConstrainedCupboard3D | Dynamic3D | `kinder/ConstrainedCupboard3D-o6-v0` |
-| SortClutteredBlocks3D | Dynamic3D | `kinder/SortClutteredBlocks3D-o20-sort_the_cluttered_blocks_into_bowls-v0` |
-| Rearrange3D | Dynamic3D | `kinder/Rearrange3D-o2-put_the_boxed_drink_and_the_can_next_to_the_bowl-v0` |
-| SweepSimple3D | Dynamic3D | `kinder/SweepSimple3D-o50-sweep_the_blocks_to_the_left_side_of_the_kitchen_island-v0` |
-| Dynamo3D | Dynamic3D | `kinder/Dynamo3D-o1-v0` |
-| Tossing3D | Dynamic3D | `kinder/Tossing3D-o1-v0` |
-| ScoopPour3D | Dynamic3D | `kinder/ScoopPour3D-o10-v0` |
-| BalanceBeam3D | Dynamic3D | `kinder/BalanceBeam3D-o3-v0` |
-| SweepIntoDrawer3D | Dynamic3D | `kinder/SweepIntoDrawer3D-o5-v0` |
+## Installation
 
-## :zap: Usage Example
+### From PyPI
+
+```bash
+pip install kindergarden          # core only
+pip install kindergarden[all]     # all environment dependencies
+pip install kindergarden[dynamic2d]     # only dynamic2d environments
+pip install kindergarden[kinematic2d]   # only kinematic2d environments
+pip install kindergarden[kinematic3d]   # only kinematic3d environments
+pip install kindergarden[dynamic3d]     # only dynamic3d environments
+```
+
+You can also combine extras: `pip install kindergarden[kinematic2d,kinematic3d]`
+
+### From Source
+
+We strongly recommend [uv](https://docs.astral.sh/uv/getting-started/installation/), but other standard setups work too.
+
+```bash
+git clone https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden.git
+cd kindergarden
+uv pip install -e ".[develop]"   # all dependencies + dev tools
+```
+
+Or install only what you need:
+```bash
+uv pip install -e .              # core only
+uv pip install -e ".[all]"      # all environment dependencies
+uv pip install -e ".[dynamic2d]" # only dynamic2d environments
+```
+
+To check the installation, run `./run_ci_checks.sh`. It should complete with all green successes.
+
+## Usage Example
 
 ### Basic Usage (Gym API)
 
@@ -93,76 +101,43 @@ object_centric_obs = env.observation_space.devectorize(vec_obs)
 recovered_vec_obs = env.observation_space.vectorize(object_centric_obs)
 ```
 
-## :muscle: Challenges for Existing Approaches
+## Quick Environment Reference
 
-What makes KinDER challenging?
+| Environment | Category | Example Environment ID |
+|---|---|---|
+| ClutteredRetrieval2D | Kinematic2D | `kinder/ClutteredRetrieval2D-o10-v0` |
+| Motion2D | Kinematic2D | `kinder/Motion2D-p5-v0` |
+| Obstruction2D | Kinematic2D | `kinder/Obstruction2D-o4-v0` |
+| PushPullHook2D | Kinematic2D | `kinder/PushPullHook2D-v0` |
+| ClutteredStorage2D | Kinematic2D | `kinder/ClutteredStorage2D-b15-v0` |
+| StickButton2D | Kinematic2D | `kinder/StickButton2D-b10-v0` |
+| DynObstruction2D | Dynamic2D | `kinder/DynObstruction2D-o3-v0` |
+| DynPushPullHook2D | Dynamic2D | `kinder/DynPushPullHook2D-o5-v0` |
+| DynPushT2D | Dynamic2D | `kinder/DynPushT2D-t1-v0` |
+| DynScoopPour2D | Dynamic2D | `kinder/DynScoopPour2D-o50-v0` |
+| Obstruction3D | Kinematic3D | `kinder/Obstruction3D-o4-v0` |
+| Packing3D | Kinematic3D | `kinder/Packing3D-p3-v0` |
+| Table3D | Kinematic3D | `kinder/Table3D-o3-v0` |
+| Transport3D | Kinematic3D | `kinder/Transport3D-o2-v0` |
+| BaseMotion3D | Kinematic3D | `kinder/BaseMotion3D-v0` |
+| Shelf3D | Kinematic3D | `kinder/Shelf3D-o10-v0` |
+| ConstrainedCupboard3D | Dynamic3D | `kinder/ConstrainedCupboard3D-o6-v0` |
+| SortClutteredBlocks3D | Dynamic3D | `kinder/SortClutteredBlocks3D-o20-sort_the_cluttered_blocks_into_bowls-v0` |
+| Rearrange3D | Dynamic3D | `kinder/Rearrange3D-o2-put_the_boxed_drink_and_the_can_next_to_the_bowl-v0` |
+| SweepSimple3D | Dynamic3D | `kinder/SweepSimple3D-o50-sweep_the_blocks_to_the_left_side_of_the_kitchen_island-v0` |
+| Dynamo3D | Dynamic3D | `kinder/Dynamo3D-o1-v0` |
+| Tossing3D | Dynamic3D | `kinder/Tossing3D-o1-v0` |
+| ScoopPour3D | Dynamic3D | `kinder/ScoopPour3D-o10-v0` |
+| BalanceBeam3D | Dynamic3D | `kinder/BalanceBeam3D-o3-v0` |
+| SweepIntoDrawer3D | Dynamic3D | `kinder/SweepIntoDrawer3D-o5-v0` |
 
-### For Reinforcement Learning
+## Contributing
 
-Environments have long horizons and sparse rewards. Users are welcome to engineer dense rewards, but doing so may be nontrivial. Environments also have very diverse task distributions (as in the `reset()` function), so learned policies must generalize.
-
-### For Imitation Learning
-
-As with RL, generalization across tasks is a major challenge for imitation learning. Furthermore, we supply some demonstrations, but they are typically suboptimal, multimodal, and limited in quantity. Users are welcome to collect their own demonstrations.
-
-### For Language Models
-
-The physical reasoning required in KinDER is not easy to represent in natural language alone. Vision-language and vision-language-action models may fare better, but the tasks in KinDER are beyond the capabilities of current VLMs and VLAs.* (*This is an empirical claim that we will test!)
-
-### For Hierarchical Approaches
-
-Approaches that first decide "what to do" and then decide "how to do it" will run into difficulties in KinDER when there are couplings between these high-level and low-level decisions. For example, the exact grasp of an object may determine whether the object can later be placed into a tight space.
-
-### For Task and Motion Planning
-
-KinDER does not provide any models for TAMP. Users are welcome to engineer their own, but doing so may be nontrivial. Furthermore, some environments in KinDER are meant to strain the assumptions that are sometimes made in TAMP. Finally, some environments contain many objects, which may make planning slow even when models are available.
-
-## :octocat: Contributing
-
-### :ballot_box_with_check: Requirements
-1. Python >=3.10, <3.13
-2. Tested on MacOS Monterey and Ubuntu 22.04 (but we aim to support most platforms)
-
-### :wrench: Installation
-
-#### From PyPI
-
-```bash
-pip install kindergarden          # core only
-pip install kindergarden[all]     # all environment dependencies
-pip install kindergarden[dynamic2d]     # only dynamic2d environments
-pip install kindergarden[kinematic2d]   # only kinematic2d environments
-pip install kindergarden[kinematic3d]   # only kinematic3d environments
-pip install kindergarden[dynamic3d]     # only dynamic3d environments
-```
-
-You can also combine extras: `pip install kindergarden[kinematic2d,kinematic3d]`
-
-#### From Source
-
-We strongly recommend [uv](https://docs.astral.sh/uv/getting-started/installation/).
-
-```bash
-git clone https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden.git
-cd kindergarden
-uv pip install -e ".[develop]"   # all dependencies + dev tools
-```
-
-Or install only what you need:
-```bash
-uv pip install -e .              # core only
-uv pip install -e ".[all]"      # all environment dependencies
-uv pip install -e ".[dynamic2d]" # only dynamic2d environments
-```
-
-### :microscope: Check Installation
-Run `./run_ci_checks.sh`. It should complete with all green successes.
-
-### :mag: General Guidelines
+### General Guidelines
 * All checks must pass before code is merged (see `./run_ci_checks.sh`)
 * All code goes through the pull request review process
 
-### :new: Adding New Environments
+### Adding New Environments
 Some new environment requests are in Issues. To add a new environment, please see the examples in `src/kinder/env`. Also consider:
 * Environments are registered in `src/kinder/__init__.py`
 * Each environment should have at least one demonstration (see `scripts/collect_demos.py`)
